@@ -1,0 +1,8 @@
+def load_config():
+    config_filepath = "config.yaml's file path"
+    with config_filepath.open() as f:
+        config_dict = yaml.load(f, Loader=yaml.FullLoader)
+    config = argparse.Namespace()
+    for key, value in config_dict.items():
+        setattr(config, key, value)
+    return config

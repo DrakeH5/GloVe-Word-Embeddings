@@ -1,3 +1,15 @@
+from dataclasses import dataclass, field
+from collections import Counter
+import os
+import pickle
+
+import h5py
+import numpy as np
+from tqdm import tqdm
+
+from vectorizer import Vectorizer
+
+
 @dataclass
 class CooccurrenceEntries:
     vectorized_corpus: list

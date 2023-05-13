@@ -1,3 +1,7 @@
+import torch
+import torch.nn as nn
+
+
 class GloVe(nn.Module):
 
     def __init__(self, vocab_size, embedding_size, x_max, alpha):

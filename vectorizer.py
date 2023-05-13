@@ -1,3 +1,8 @@
+from dataclasses import dataclass
+
+from vocabulary import Vocabulary
+
+
 @dataclass
 class Vectorizer:
     vocab: Vocabulary

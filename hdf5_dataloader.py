@@ -1,3 +1,24 @@
+from dataclasses import dataclass, field
+import random
+import contextlib
+
+import torch
+import torch.utils.data
+import h5py
+
+
+@dataclass
+class CooccurrenceDataset(torch.utils.data.Dataset):
+    token_ids: torch.Tensor
+    cooccurr_counts: torch.Tensor
+
+    def __getitem__(self, index):
+        return [self.token_ids[index], self.cooccurr_counts[index]]
+    
+    def __len__(self):
+        return self.token_ids.size()[0]
+
+
 @dataclass
 class HDF5DataLoader:
     filepath: str

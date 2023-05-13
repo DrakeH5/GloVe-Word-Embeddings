@@ -1,3 +1,7 @@
+import random
+from dataclasses import dataclass, field
+
+
 @dataclass
 class Vocabulary:
     token2index: dict = field(default_factory=dict)

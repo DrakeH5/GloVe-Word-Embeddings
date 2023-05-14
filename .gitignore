@@ -1,0 +1,5 @@
+*.pt
+*.pickle
+
+cooccurrenceEntries/
+__pycache__/

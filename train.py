@@ -31,7 +31,7 @@ def parse_args():
 
 
 def load_config():
-    config_filepath = Path(__file__).absolute().parents[1] / "config.yaml"
+    config_filepath = Path(__file__).absolute().parents[0] / "config.yaml"
     with config_filepath.open() as f:
         config_dict = yaml.load(f, Loader=yaml.FullLoader)
     config = argparse.Namespace()

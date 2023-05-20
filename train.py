@@ -4,15 +4,12 @@ import pickle
 #tokenizer = get_tokenizer("basic_english")
 
 from vocabulary import creatingVocab, shuffleVocab
+from countCooccuringPairs import countCooccuringPairs
 
 def loadTrainingData():
     print("Loading training data...")
     with open("./traningData.pickle", "rb") as f:
         return pickle.load(f)
-
-
-#def train():
-    
 
 
 def main():
@@ -21,9 +18,10 @@ def main():
     #tokenizer(corpus)
     vocabTokens, vocabCount, token2Index = creatingVocab(corpus)
     #print(vocabTokens[0], vocabCount[0], token2Index[vocabTokens[0]])
-    vocabTokens, vocabCount, token2Index = shuffleVocab(vocabTokens, vocabCount, token2Index)
+   # vocabTokens, vocabCount, token2Index = shuffleVocab(vocabTokens, vocabCount, token2Index)
     #print(vocabTokens[0], vocabCount[0], token2Index[vocabTokens[0]])
-    
+    cooccuranceMatrix = countCooccuringPairs(corpus, vocabTokens)
+    #print(cooccuranceMatrix)
 
 
 main()

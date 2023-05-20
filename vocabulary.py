@@ -6,7 +6,7 @@ def creatingVocab(corpus):
     convertTokenToIndex = {}
     nmbOfOccurences = []
     for token in corpus:
-        if token not in tokens:
+        if token not in convertTokenToIndex:
             tokens[len(tokens)] = token
             convertTokenToIndex[token] = len(convertTokenToIndex)
             nmbOfOccurences.append(0)

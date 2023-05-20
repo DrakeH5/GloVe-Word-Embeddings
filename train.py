@@ -20,7 +20,7 @@ def main():
     #print(vocabTokens[0], vocabCount[0], token2Index[vocabTokens[0]])
    # vocabTokens, vocabCount, token2Index = shuffleVocab(vocabTokens, vocabCount, token2Index)
     #print(vocabTokens[0], vocabCount[0], token2Index[vocabTokens[0]])
-    cooccuranceMatrix = countCooccuringPairs(corpus, vocabTokens)
+    countCooccuringPairs(corpus, vocabTokens)
     #print(cooccuranceMatrix)
 
 

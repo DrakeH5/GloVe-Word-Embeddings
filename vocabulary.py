@@ -1,13 +1,13 @@
 import random
 
-def countCooccuringPairs(corpus):
+def creatingVocab(corpus):
     print("Creating Vocab...")
-    tokens = []
+    tokens = {}
     convertTokenToIndex = {}
     nmbOfOccurences = []
     for token in corpus:
         if token not in tokens:
-            tokens.append(token)
+            tokens[len(tokens)] = token
             convertTokenToIndex[token] = len(convertTokenToIndex)
             nmbOfOccurences.append(0)
         nmbOfOccurences[convertTokenToIndex[token]]+=1
@@ -16,9 +16,7 @@ def countCooccuringPairs(corpus):
 
 def shuffleVocab(vocabTokens, vocabCount, token2Index):
     print("Shuffling...")
-    NEWtokens = []
-    for i in range(len(vocabTokens)):
-        NEWtokens.append("")
+    NEWtokens = {}
     NEWconvertTokenToIndex = {}
     NEWnmbOfOccurences = []
     for i in range(len(vocabCount)):

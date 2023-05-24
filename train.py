@@ -55,7 +55,7 @@ def train(vocab, vocabCount, t2I):
     )  
     model.train()
     totLosses  = []
-    for epoch in tqdm(range(10)):
+    for epoch in tqdm(range(20)):
         eLoss = 0
         batches = openCooccurence()
         for batch in batches:

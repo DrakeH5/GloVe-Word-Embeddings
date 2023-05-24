@@ -42,7 +42,6 @@ class GloVe(nn.Module):
 
 def train(vocab, vocabCount, t2I):
     print("Training...")
-    batches = openCooccurence()
     model = GloVe(
         vocab_size=len(vocab),
         embedding_size=100,
@@ -58,6 +57,7 @@ def train(vocab, vocabCount, t2I):
     totLosses  = []
     for epoch in tqdm(range(10)):
         eLoss = 0
+        batches = openCooccurence()
         for batch in batches:
             loss = model(
                 batch[0][:, 0],

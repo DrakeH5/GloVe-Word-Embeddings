@@ -13,7 +13,7 @@ import h5py
 def main():
     with open("./vocab.pkl", "rb") as f:
         vocab = pickle.load(f)
-
+    print(len(vocab))
     model = GloVe(
         vocab_size=len(vocab),
         embedding_size=100,

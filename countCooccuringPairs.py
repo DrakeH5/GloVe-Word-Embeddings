@@ -54,7 +54,7 @@ def countCooccuringPairs(corpus, i2Token, t2I):
             #   if m == i:
             for j in corpusGlossary[i]:
                 for k in range(max(j-10, 0), min(j+10, len(i2Token))):
-                    if k != 0:
+                    if k != 0 and corpus[k] in t2I:
                         if (t2I[i], t2I[corpus[k]]) not in cooccurance:
                             cooccurance[(t2I[i], t2I[corpus[k]])] = 0
                         cooccurance[(t2I[i], t2I[corpus[k]])]+=1

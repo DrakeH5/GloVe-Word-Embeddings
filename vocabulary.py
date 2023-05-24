@@ -3,11 +3,11 @@ import pickle
 
 
 def shortenVocab(tokens, tokens2Index, nmbOfOccurences, limit):
-    for j, i in enumerate(nmbOfOccurences):
-        if i < limit:
-            del nmbOfOccurences[j]
-            del tokens2Index[tokens[j]]
-            del tokens[j]
+    #https://github.com/pengyan510/nlp-paper-implementation/blob/master/glove/src/vocabulary.py
+    inOrder = sorted(list(tokens2Index.keys()), key = lambda token: nmbOfOccurences[tokens2Index[token]], reverse=True)
+    tokens2Index={token: index for index, token in enumerate(inOrder[:limit])}
+    tokens={index: token for index, token in enumerate(inOrder[:limit])}
+    nmbOfOccurences = [nmbOfOccurences[tokens2Index[token]] for token in inOrder[:limit]]
     return tokens, tokens2Index, nmbOfOccurences
 
 
@@ -22,7 +22,7 @@ def creatingVocab(corpus):
             convertTokenToIndex[token] = len(convertTokenToIndex)
             nmbOfOccurences.append(0)
         nmbOfOccurences[convertTokenToIndex[token]]+=1
-    #shortenVocab(tokens, convertTokenToIndex, nmbOfOccurences, 10)
+    tokens, convertTokenToIndex, nmbOfOccurences = shortenVocab(tokens, convertTokenToIndex, nmbOfOccurences, 100000)  
     tokens, nmbOfOccurences, convertTokenToIndex = shuffleVocab(tokens, nmbOfOccurences, convertTokenToIndex)
     with open("./vocab.pkl", "wb") as file:
         pickle.dump(tokens, file)

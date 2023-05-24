@@ -1,4 +1,5 @@
 import random
+import pickle
 
 def creatingVocab(corpus):
     print("Creating Vocab...")
@@ -11,6 +12,8 @@ def creatingVocab(corpus):
             convertTokenToIndex[token] = len(convertTokenToIndex)
             nmbOfOccurences.append(0)
         nmbOfOccurences[convertTokenToIndex[token]]+=1
+    with open("./vocab.pkl", "wb") as file:
+        pickle.dump(tokens, file)
     return tokens, nmbOfOccurences, convertTokenToIndex 
 
 

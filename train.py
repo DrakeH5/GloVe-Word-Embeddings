@@ -2,15 +2,7 @@ import pickle
 import torch
 import torch.nn as nn
 from tqdm import tqdm
-import h5py
-
-
-def openCooccurance():
-    with h5py.File("./cooccurrenceEntries\cooccurrence.hdf5", "r") as f:
-        dataset = f["cooccurence"][()]  # returns as a numpy array
-        tensor = torch.from_numpy(dataset)
-        print(tensor)
-        return tensor
+from openCooccurence import openCooccurence
 
 
 class GloVe(nn.Module): 
@@ -50,7 +42,7 @@ class GloVe(nn.Module):
 
 def train(vocab, vocabCount, t2I):
     print("Training...")
-    cooccurence = openCooccurance()
+    batches = openCooccurence()
     model = GloVe(
         vocab_size=len(vocab),
         embedding_size=100,
@@ -66,13 +58,12 @@ def train(vocab, vocabCount, t2I):
     totLosses  = []
     for epoch in tqdm(range(10)):
         eLoss = 0
-        for token in vocabCount:
-            for context in vocabCount:
-                loss = model(
-                    vocabCount[t2I(token)],
-                    vocabCount[t2I(context)],
-                    cooccurence[token][context]
-                ) 
+        for batch in batches:
+            loss = model(
+                batch[0][:, 0],
+                batch[0][:, 1],
+                batch[1]
+            ) 
             eLoss += loss.detach().item()
             loss.backward()
             optimizer.step()

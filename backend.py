@@ -6,7 +6,7 @@ import pickle
 import torch
 import yaml
 from gensim.models.keyedvectors import KeyedVectors
-from glove import GloVe
+from train import GloVe
 import h5py
 
 
